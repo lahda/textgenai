@@ -1,0 +1,122 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+{% url 'home' as home %}
+{% url 'login' as login %} 
+{% url 'signup' as signup %} 
+{% url 'mpd' as mpd %} 
+    <nav class="navbar" style="border-bottom: 1px solid rgba(44, 113, 235, 0.25);">
+    <a href="{{home}}">    
+    <img
+      src="{% static 'images/Logo.png' %}"
+      alt="Logo"
+      style="width: auto; height: 70px; margin-left: 50px"/></a>
+
+      <a href="{{login}}">
+        <button class="me-3"
+        style="border-radius: 5px;border: 1px solid #2c71eb;background: #fff;width: 140px;height: 40px;
+        "><span style="color: #2c71eb;font-family: Roboto Condensed;font-size: 18px;font-style: normal;font-weight: 500;line-height: normal;">
+        Connexion</span></button> </a>
+  </div>
+  </nav>
+  <br />
+  <br />
+  <br />
+  <br />   
+
+  <center>
+    <form action="{% url 'mpd' %}" method="POST">
+      {% csrf_token %%}
+     <div class="col-3">
+        <div >
+            <h1> Mot de passe oublié ? </h1>
+        </div >   
+            
+        <div >   
+            <input type="email" class="form-control" id="exampleInputEmail1" name="email" value="{{email}}"
+            aria-describedby="emailHelp" placeholder="Email"style="width: 600px; height:60px; ">
+        </div>
+        <br />
+        <div >
+            <input type="password" class="form-control" id="exampleInputPassword1 " name="new_password" value="{{new_password}}"
+             placeholder=" Nouveau mot de passe "style="width: 600px; height:60px; " >
+        </div>
+        <br />
+        <div >
+            <input type="password" class="form-control" id="exampleInputPassword1 " name="confirm_password" value="{{confirm_password}}" 
+             placeholder="Confirme le nouveau mot de passe "style="width: 600px; height:60px; " >
+        </div>
+        <br />
+        
+        <br />
+
+        <button type="submit" class="btn btn-primary"style="width: 600px; 
+        height:60px; font-family: Roboto Condensed;font-size: 30px;
+        ">Valider</button>
+        
+        {% if error_message1%}
+        <p id="myMessage5" style="color: red;"><strong>{{ error_message1 }}</strong></p>
+       {% endif %}
+       <script>
+        function hideMessage(message, seconds) {
+          setTimeout(function() {
+            message.style.display = 'none';
+          }, seconds * 1000);
+        }
+        var message = document.getElementById('myMessage5');
+        hideMessage(message,4);
+       </script>
+
+       {% if  success_message %}
+        <p id="myMessage7" style="color: red;"><strong>{{ success_message }}</strong></p>
+       {% endif %}
+       <script>
+        function hideMessage(message, seconds) {
+          setTimeout(function() {
+            message.style.display = 'none';
+          }, seconds * 1000);
+        }
+        var message = document.getElementById('myMessage7');
+        hideMessage(message,4);
+       </script>
+       {% if  error_message2 %}
+       <p id="myMessage8" style="color: red;"><strong>{{ error_message2 }}</strong></p>
+      {% endif %}
+      <script>
+       function hideMessage(message, seconds) {
+         setTimeout(function() {
+           message.style.display = 'none';
+         }, seconds * 1000);
+       }
+       var message = document.getElementById('myMessage8');
+       hideMessage(message,4);
+      </script>
+
+     </div>
+    </form>
+ </center>
+ <br />
+ <br />
+ <br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+ <div  style="border-top: 1px solid rgba(44, 113, 235, 0.25); ">
+    <div>
+      <img
+        src="{% static 'images/Logo.png' %}"
+        alt="Logo"
+        style="width: auto; height: 70px; margin-left: 50px; "/>
+      </div>
+    <div  style="display:flex ;justify-content: flex-end;font-family: Roboto Condensed;font-size: 18px;
+          font-style: normal;font-weight: 500;line-height: normal;margin-right: 50px;">
+        <h5 style="color:#000 ;font-size: 18px;font-style: normal">© Designed And Developed by: </h5>
+        &nbsp;
+        <h5 style="color:#2c71eb ;font-size: 18px;font-style: normal">
+            Beb's Aude
+        </h5>
+        </div>
+{% endblock %}

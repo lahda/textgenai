@@ -1,0 +1,238 @@
+{% extends 'layout.html' %}
+{% block main %}
+
+<div class="row">
+  {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+
+    <script type="text/javascript">
+        setTimeout(function() {
+            var messages = document.getElementsByClassName('messages')[0];
+            messages.style.display = 'none';
+        }, 4000);
+    </script>
+{% endif %}
+  <form action="{% url 'dashbord' %}" method="POST">
+    {% csrf_token %%}
+    <div class="col-12 text-center">
+          <h1>Réécriture du texte</h1>
+          <div class="spinner-border" role="status" id="spinner" style="display: none;">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+    </div>
+        <br />
+        <br />
+          <div class="row"> 
+            <div class="col-3">
+              <div>
+                <h5>Aimeriez-vous que certains mots clés reviennent? si oui entrez vos mots clés.</h5>
+                <textarea class="form-control" id="keywords1" name="keywords1" style="border-radius: 10px;
+                border: 1px solid rgba(0, 0, 0, 0.20);background: #FFF;">{{keywords}}</textarea>
+                <br />
+                <br />
+              </div>
+            </div>
+          <div class="col-5">
+              <div >
+                <h5>Texte original:</h5>
+                <textarea class="form-control" id="texteoriginalrec" name="texteoriginalrec" style="border-radius: 10px;height:50vh;
+                border: 1px solid rgba(0, 0, 0, 0.20);background: #FFF;">{{textoriginale}}</textarea> 
+              </div>
+                <br />
+            <button class="btn btn-primary" id="supprimer2" type="button" onclick="clearText()" style=" 
+              background: #FFFAA0;"
+              >
+                <svg svg xmlns="#" height="30" viewBox="0 -960 960 960" width="30">
+                  <path fill="#000" d="m376-300 104-104 104 104 56-56-104-104 104-104-56-56-104 104-104-104-56 56 104 104-104 104 56 56Zm-96 180q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520Zm-400 0v520-520Z"/>
+                </svg>
+            </button>
+              <script>
+                $("#supprimer2").hide();
+                $("#texteoriginalrec").keyup(function () {
+                  if ($(this).val()) {
+                    $("#supprimer2").show();
+                  } else {
+                    $("#supprimer2").hide();
+                  }
+                });
+              </script>
+              <script>
+                function clearText() {
+                  var textarea = document.getElementById('texteoriginalrec');
+                  textarea.value = '';
+                }
+              </script>
+                    {% if text3r %}
+                       <p id="myMessage" style="color: red;"><strong>{{ text3r }}</strong></p>
+                       <script>
+                       textarea.value = savedValues.textarea;
+                      input.value = savedValues.input;
+                       </script>
+                    {% endif %}
+
+                    <script>
+                          function hideMessage(message, seconds) {
+                            setTimeout(function() {
+                              message.style.display = 'none';
+                            }, seconds * 1000);
+                          }
+                          var message = document.getElementById('myMessage');
+                          hideMessage(message,4);
+                    </script>
+                      {% if ar %}
+                        <p id="myMessage3" style="color: red;"><strong>{{ ar }}</strong></p>
+                      {% endif %}
+                    <script>
+                      function hideMessage(message, seconds) {
+                        setTimeout(function() {
+                          message.style.display = 'none';
+                        }, seconds * 1000);
+                      }
+                      var message = document.getElementById('myMessage3');
+                      hideMessage(message,4);
+                    </script>
+          </div>
+        <div class="col-4 " >
+          <div >
+            <h5>Texte réécrit:</h5>
+              <textarea readonly class="form-control"  id="texterallong2" name="texterallong2" style="border-radius: 10px;height:50vh;
+                border: 1px solid rgba(0, 0, 0, 0.20);background: #f2f2f2;">
+                {{rewrite}}
+              </textarea>
+          </div>
+          <br />
+          <button type="button"class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#exampleModal"style="width: 250px; color: #000;
+            background: #FFFAA0;"
+            id="btnSave2">
+              Enregistrer
+          </button>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+        <button type="button"class="btn btn-primary"id="copy2" onclick="copyText()"style=" color: #000;background: #FFFAA0;" >
+          <svg svg xmlns="#" height="30" viewBox="0 -960 960 960" width="30">
+            <path fill="#000" d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"/>
+          </svg>
+        </button>
+        <script>
+          function copyText() {
+            var textarea = document.getElementById('texterallong2');
+            textarea.select();
+            document.execCommand('copy');
+            var copyButton = document.getElementById('copy2');
+            copyButton.innerText = 'Copié !';
+            setTimeout(function() {
+              copyButton.innerText = 'Copier';
+            }, 2000);
+          }
+        </script>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Créer un enregistrement</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="titleInput" class="form-label">Titre :</label>
+                <input type="text" class="form-control" id="titre" name="titleInput2">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+              <button type="button" class="btn btn-primary" id="enregis" data-bs-dismiss="modal" style="display:inline-block;">Sauvegarder</button>
+            </div>
+          </div>
+        </div>
+      </div> 
+    <script>
+        console.log(1)
+        const titleInput = document.getElementById('titre');
+        console.log(2)
+        const saveButton = document.getElementById('enregis');
+        console.log(3)
+        titleInput.addEventListener('input', function()
+            {
+              console.log(4)
+              if (titleInput.value.trim() !== '') 
+              {
+                  saveButton.style.display = 'inline-block';
+                  console.log(5);
+              } 
+              
+            });
+            
+              saveButton.addEventListener('click', function() {
+                const title = titleInput.value.trim();
+                saveContent(title);
+              });
+        
+        function saveContent(title) {
+          var textarea = document.getElementById('texterallong2');
+          var content = textarea.value.trim();
+          $.ajax({
+            type: 'POST',
+            url: '/enregistrements/',
+            data: {
+              title: title,
+              content: content
+            },
+            success: function(response) {
+            },
+            error: function(xhr, textStatus, errorThrown) {
+            }
+          });
+        }
+            function getCookie(name)
+             {
+              const value = `; ${document.cookie}`;
+              const parts = value.split(`; ${name}=`);
+              if (parts.length === 2) return parts.pop().split(';').shift();
+             }
+    </script>
+      </div>
+            <center>
+              <button id="bouton-resumer"type="submit"class="btn btn-primary btn-lg"style="width: 600px; height:60px; margin-top: 50px;color: #000;
+                background: #FFFAA0;font-family: Roboto Condensed;font-size: 30px;font-style: normalfont-weight: 700line-height: normal;text-transform: uppercase;"
+                  onclick="envoyerRequete()">
+                  Reecrire
+              </button>
+                  <script>
+                        $(document).ready(function()
+                          {
+                            $('#bouton-resumer').click(function()
+                             {
+                                var texteOriginal = $('#texteoriginalrec').val();
+                              });
+                          });
+                  </script>
+            </center> 
+                <script>
+                    function envoyerRequete()
+                      {
+                        var spinner = document.getElementById("spinner");
+                        spinner.style.display = "block";
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("GET", "dashbord", true);
+                        xhr.onreadystatechange = function()
+                         {
+                            if (xhr.readyState === 4 && xhr.status === 200)
+                            {
+                                spinner.style.display = "none";
+                                contenuPrincipal.style.display = "block";
+                                var reponse = xhr.responseText;
+                              }
+                          };
+                        xhr.send();
+                      }   
+                </script>   
+  </form>
+</div>
+
+{% endblock %}

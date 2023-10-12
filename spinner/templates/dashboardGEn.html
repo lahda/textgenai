@@ -1,0 +1,110 @@
+{% extends 'layout.html' %}
+{% block main %}
+
+<div class="row">
+  <form action="{% url 'dashboardGEn' %}" method="POST">
+    {% csrf_token %%}
+    <div class="col-12 text-center">
+      <h1>Génération du texte</h1>
+      <div class="spinner-border" role="status" id="spinner" style="display: none;">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+      
+      <br />
+    <div class="row d-flex justify-content-center"> 
+      <div class="col-4">
+          <div>
+              <h5>Posez toutes vos questions ici!</h5>
+              <textarea class="form-control" id="questions" name="questions" style="border-radius: 10px;
+              border: 1px solid rgba(0, 0, 0, 0.20);background: #FFF;">{{questions}}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           </textarea>
+            </textarea>
+          </div>
+          <br />
+          {% if text3gn %}
+        <p id="myMessage7" style="color: red;"><strong>{{ text3gn }}</strong></p>
+        {% endif %}
+        <script>
+          function hideMessage(message, seconds) {
+            setTimeout(function() {
+              message.style.display = 'none';
+            }, seconds * 1000);
+          }
+          var message = document.getElementById('myMessage7');
+          hideMessage(message,2);
+        </script>
+
+      </div>
+        
+        <div class="col-5" >
+          <div >
+                <h5>Réponse:</h5>
+                <textarea readonly class="form-control"  id="reponse" name="reponse" style="border-radius: 10px;height:50vh;
+                    border: 1px solid rgba(0, 0, 0, 0.20);background: #f2f2f2;">
+
+                    {{ reponse }}
+
+                </textarea>
+          </div>
+          <br />
+          <button type="button"class="btn btn-primary"onclick="copyText()"id="copy6" >
+    
+              <svg svg xmlns="#" height="30" viewBox="0 -960 960 960" width="30">
+                <path fill="#FFFFFF" d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"/>
+              </svg>
+          </button>
+            <script>
+              $("#copy6").hide();
+              $("#reponse").keyup(function () {
+                if ($(this).val()) {
+                  $("#copy6").show();
+                } else {
+                  $("#copy6").hide();
+                }
+              });
+              
+            </script>
+            <script>
+              function copyText() {
+                var textarea = document.getElementById('reponse');
+                textarea.select();
+                document.execCommand('copy');
+                var copyButton = document.getElementById('copy6');
+                copyButton.innerText = 'Copié !';
+                setTimeout(function() {
+                  copyButton.innerText = 'Copier';
+                }, 2000);
+              }
+            </script>
+        </div>
+        <center>
+          <button type="submit"class="btn btn-primary btn-lg"style="width: 600px; height:60px; margin-top: 50px;color: #FFF;font-family: Roboto Condensed;font-size: 30px;
+            font-style: normal;font-weight: 700;line-height: normal;text-transform: uppercase;"onclick="envoyerRequete()">
+              valider
+          </button>
+        </center> 
+        <script>
+          function envoyerRequete()
+            {
+              var spinner = document.getElementById("spinner");
+              spinner.style.display = "block";
+              var xhr = new XMLHttpRequest();
+              xhr.open("GET", "dashboardGEn", true);
+              xhr.onreadystatechange = function()
+              {
+                  if (xhr.readyState === 4 && xhr.status === 200)
+                  {
+                      spinner.style.display = "none";
+                      contenuPrincipal.style.display = "block";
+                      var reponse = xhr.responseText;
+                    }
+                };
+              xhr.send();
+            }   
+        </script>    
+    </div>
+    
+  </form>
+</div>
+
+{% endblock %}

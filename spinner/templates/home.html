@@ -1,90 +1,167 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 <div>
-<nav class="navbar" style="border-bottom: 1px solid rgba(44, 113, 235, 0.25); background: #fff;">
-  {% url 'home' as home %} 
-  {% url 'login' as login %} 
-  {% url 'signup' as signup %} 
-  <a href="{{home}}">
-  <img
-    src="{% static 'images/Logo.png' %}"
-    alt="Logo"
-    style="width: auto; height: 70px; margin-left: 50px"/>
-  </a>
-  <div>  <a href="{{login}}">
-          <button class="me-3"
-          style="border-radius: 5px;border: 1px solid #2c71eb;background: #fff;width: 140px;height: 40px;
-          "><span style="color: #2c71eb;font-family: Roboto Condensed;font-size: 18px;font-style: normal;font-weight: 500;line-height: normal;">
-          Connexion</span></button> </a>
-      &nbsp;
-      &nbsp;
-      <a href="{{signup}}">
-      <button class="me-3" style="border-radius: 5px;border: 1px solid #2c71eb;background:#2C71EB;;width: 140px;height: 40px;
-      "><span  style="color: #fff;font-family: Roboto Condensed;font-size: 18px;font-style: normal;font-weight: 500;line-height: normal;">Inscription</span></button>
+  <nav
+    class="navbar"
+    style="border-bottom: 1px solid rgba(44, 113, 235, 0.25); background: #fff"
+  >
+    {% url 'home' as home %} {% url 'login' as login %} {% url 'signup' as signup %}
+    <a href="{{home}}">
+      <img
+        src="{% static 'images/Logo.png' %}"
+        alt="Logo"
+        style="width: auto; height: 70px; margin-left: 50px"
+      />
     </a>
+    <div>
+      <a href="{{login}}">
+        <button
+          class="me-3"
+          style="
+            border-radius: 5px;
+            border: 1px solid #2c71eb;
+            background: #fff;
+            width: 140px;
+            height: 40px;
+          "
+        >
+          <span
+            style="
+              color: #2c71eb;
+              font-family: Roboto Condensed;
+              font-size: 18px;
+              font-style: normal;
+              font-weight: 500;
+              line-height: normal;
+            "
+          >
+            Connexion</span
+          >
+        </button>
+      </a>
+      &nbsp; &nbsp;
+      <a href="{{signup}}">
+        <button
+          class="me-3"
+          style="
+            border-radius: 5px;
+            border: 1px solid #2c71eb;
+            background: #2c71eb;
+            width: 140px;
+            height: 40px;
+          "
+        >
+          <span
+            style="
+              color: #fff;
+              font-family: Roboto Condensed;
+              font-size: 18px;
+              font-style: normal;
+              font-weight: 500;
+              line-height: normal;
+            "
+            >Inscription</span
+          >
+        </button>
+      </a>
     </div>
-</nav>
+  </nav>
 
-<div>
-  <img
-    src="{% static 'images/acceuil.png' %}"
-    alt="acceuil"
-    style=" width: 100%; height: 400px;"/>
   <div>
-</div>
-<div>
-  <center>
-  <h1 style="color:#2c71eb">TextGenAI</h1>
-  <br />
-  <p style="margin-left: 50px;margin-right: 50px;"> TextGenia est une plateforme basée sur
-      l'intelligence artificielle
-      qui propose des fonctionnalités telles que
-      la rédaction de résumés de texte,
-      la réécriture de texte, le rallongement de texte
-       et la génération de texte automatique
-      .Elle permet aux utilisateurs de créer et de modifier du 
-      contenu textuel de manière efficace et rapide. </p>
-  </center>
-</div> 
-<center>
-<h1 style="color:#2c71eb">Fonctionnalités</h1>
-</center>
-<br />
-<div class="row"style="margin-left: 50px;margin-right: 50px;">
-  <div class="col-3">
-    <h5 style="color:#2c71eb">Résumé de texte </h5>
-    <p>Résumez n'importe quel texte en specifiant un nombre de mot en un clic.  </p>
-  </div>
-  <div class="col-3">
-    <h5 style="color:#2c71eb">Réécriture de texte </h5>
-    <p>Transformez votre texte en version unique tout en conservant le sens du contenu original.  </p>
-  </div>
-  <div class="col-3">
-    <h5 style="color:#2c71eb">Rallongement de texte </h5>
-    <p>Etendez votre texte initial, avec un nombre de mot spécifique. </p>
-  </div>
-  <div class="col-3">
-    <h5 style="color:#2c71eb">Génération de texte </h5>
-    <p>La génération de texte consiste à poser des questions
-       afin d'obtenir des réponses.</p>
-  </div>
- 
-</div>
-<br />
-<br />
-<div  style="border-top: 1px solid rgba(44, 113, 235, 0.25); ">
-<div>
-  <img
-    src="{% static 'images/Logo.png' %}"
-    alt="Logo"
-    style="width: auto; height: 70px; margin-left: 50px; "/>
-  </div>
-<div  style="display:flex ;justify-content: flex-end;font-family: Roboto Condensed;font-size: 18px;
-      font-style: normal;font-weight: 500;line-height: normal;margin-right: 50px;">
-    <h5 style="color:#000 ;font-size: 18px;font-style: normal">© Designed And Developed by: </h5>
-    &nbsp;
-    <h5 style="color:#2c71eb ;font-size: 18px;font-style: normal">
-        Beb's Aude
-    </h5>
+    <img
+      src="{% static 'images/acceuil.png' %}"
+      alt="acceuil"
+      style="width: 100%; height: 400px"
+    />
+    <div></div>
+    <div>
+      <center>
+        <h1 style="color: #2c71eb">TextGenAI</h1>
+        <br />
+        <p style="margin-left: 50px; margin-right: 50px">
+          TextGenAI est une plateforme basée sur l'intelligence artificielle qui
+          propose des fonctionnalités telles que la rédaction de résumés de
+          texte, la réécriture de texte, le rallongement de texte et la
+          génération de texte automatique. Elle permet aux utilisateurs de créer
+          et de modifier du contenu textuel de manière efficace et rapide.
+        </p>
+      </center>
     </div>
+    <center>
+      <h1 style="color: #2c71eb">Fonctionnalités</h1>
+    </center>
+    <br />
+    <div class="row" style="margin-left: 50px; margin-right: 50px">
+      <div class="col-3">
+        <h5 style="color: #2c71eb">Résumé de texte</h5>
+        <p>
+          Résumez n'importe quel texte en specifiant un nombre de mot en un
+          clic.
+        </p>
+      </div>
+      <div class="col-3">
+        <h5 style="color: #2c71eb">Réécriture de texte</h5>
+        <p>
+          Transformez votre texte en version unique tout en conservant le sens
+          du contenu original.
+        </p>
+      </div>
+      <div class="col-3">
+        <h5 style="color: #2c71eb">Rallongement de texte</h5>
+        <p>Etendez votre texte initial, avec un nombre de mot spécifique.</p>
+      </div>
+      <div class="col-3">
+        <h5 style="color: #2c71eb">Génération de texte</h5>
+        <p>
+          La génération de texte consiste à poser des questions afin d'obtenir
+          des réponses.
+        </p>
+      </div>
+    </div>
+    <br />
+    <br />
+    <div style="border-top: 1px solid rgba(44, 113, 235, 0.25)">
+      <div class="container">
+        <div class="row">
+          <div class="col-9">
+            <img
+              src="{% static 'images/Logo.png' %}"
+              alt="Logo"
+              style="width: auto; height: 70px; margin-left: 50px"
+            />
+          </div>
+          <div class="col-3" style="padding-top:25px;">
+              <span
+                style="
+                  color: #000;
+                  font-family: Roboto Condensed;
+                  font-size: 16px;
+                  font-style: normal;
+                  font-weight: 500;
+                  line-height: normal;
+                "
+              >
+                © Designed And Developed by:
+              </span>
+              &nbsp;
+              <span
+                style="
+                  color: #2c71eb;
+                  font-family: Roboto Condensed;
+                  font-size: 16px;
+                  font-style: normal;
+                  font-weight: 500;
+                  line-height: normal;
+                  padding-top:10px;
+                "
+              >
+                Beb's Audrey
+              </span>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      {% endblock %}
+    </div>
+  </div>
 </div>
-{% endblock %}

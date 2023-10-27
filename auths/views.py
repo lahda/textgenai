@@ -1,16 +1,13 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from django.shortcuts import render,HttpResponse,redirect
+from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.hashers import check_password
-from django.contrib import messages
 # from django.contrib.auth.models import User
 from auths.models import User
 from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
+from django.db import IntegrityError
 
 
 @csrf_exempt
@@ -47,12 +44,12 @@ def signup(request):
         if firstname and lastname and email and password1:
             
             if password1 != password2:
-                reponse="les mots de passe sont différents!"
+                reponse="Les mots de passe sont différents!"
                 context={'reponse':reponse,'firstname': firstname,'lastname': lastname,'email': email,'password1': password1,'password2': password2 }
                 return render (request, 'signup.html', context)
             # Vérifier si l'email existe déjà
             if User.objects.filter(email=email).exists():
-                text=" Cette email existe déjà!"
+                text=" Cette adresse e-mail existe déjà!"
                 context={'text':text,'firstname': firstname,'lastname': lastname,'email': email,'password1': password1,'password2': password2 }
                 return render (request, 'signup.html', context)
 

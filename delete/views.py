@@ -1,6 +1,5 @@
-from django.shortcuts import render
 from recordings.models import Summary,Recording_extend,Recording_rewrite
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 import uuid
 from django.views.decorators.csrf import csrf_exempt
 

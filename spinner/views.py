@@ -4,15 +4,11 @@ from django.shortcuts import render
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 import os
-from django.http import JsonResponse
 import openai
-from django.http import FileResponse
-from django.views import View
 from spinner.help import *
 
 
-key_openIA=openai.api_key = "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"
-
+key_openIA=openai.api_key=os.environ.get('OPENAI_API_KEY')
 
 #this function allows for generating content
 def chat_completion(request):
@@ -20,7 +16,7 @@ def chat_completion(request):
         questions = request.POST.get('questions')  # Récupère la question de l'utilisateur depuis la requête GET
         
         if questions:
-            prompt = f"voici ma question :\n{questions}"
+            prompt = f"Donnez-moi une réponse à {questions}"
             openai.api_key = key_openIA
             engine_list = openai.Engine.list() 
             response = openai.ChatCompletion.create(
@@ -56,7 +52,8 @@ def generate_summary(request):
             print(word_count1)# Appel à la fonction count_words avec le texte extrait du PDF
             tldr_tag = "\n tl;dr:"
         
-            prompt = f"résume ce:\n{input_text}exactement en {size_of_the_text}mots. en gardant ces mots{additional_words}"
+            # prompt = f"Résumer le texte {input_text} en {size_of_the_text} mots tout en gardant les mots {additional_words}"
+            prompt = f"Donnez-moi un résumé concis du texte {input_text} en {size_of_the_text} mots tout en conservant les mots {additional_words}"
             openai.api_key = key_openIA
             engine_list = openai.Engine.list()
             size_of_the_text2 =int(size_of_the_text)
@@ -98,7 +95,6 @@ def generate_summary(request):
             return render(request , 'dashboardRESum.html',context2 )
     return render(request, 'dashboardRESum.html',context={'text4':''})
 
-
 @csrf_exempt
 def generate_rewrite(request):
     if request.method == 'POST':
@@ -109,7 +105,8 @@ def generate_rewrite(request):
             word_count1 = count_words(input_text)  # Appel à la fonction count_words avec le texte extrait du PDF
             word_count2 = int(word_count1)
             tldr_tag = "\n tl;dr:"
-            prompt = f"paraphrase ce texte:\n{input_text}en gardant ces mot {additional_words} "
+            # prompt = f"Réécrire le texte {input_text} en préservant son idée générale et en gardant les mots {additional_words}"
+            prompt = f"Donnez-moi une réécriture du texte {input_text} en préservant son idée générale et en gardant les mots {additional_words}"
               
             openai.api_key = key_openIA
             engine_list = openai.Engine.list()
@@ -135,8 +132,6 @@ def generate_rewrite(request):
 
     return  render(request, 'dashbord.html',context={'text4':''})
 
-
-
 @csrf_exempt
 def extend_content(request):
     if request.method == 'POST':
@@ -159,7 +154,8 @@ def extend_content(request):
                         tldr_tag = "\n tl;dr:"
                         
                         openai.api_key = key_openIA
-                        prompt = f"Rallonge ce:\n{input_text2}exactement en {size_of_the_text}mots;  "
+                        # prompt = f"Rallonger le texte {input_text2} en un texte de {size_of_the_text} mots."
+                        prompt = f"Donnez-moi un ralongement du texte {input_text2} en {size_of_the_text} mots"
             
 
                         response = openai.ChatCompletion.create(
@@ -182,8 +178,6 @@ def extend_content(request):
             text3='Bien vouloir remplir tous les champs!'
             return render(request , 'dashboardRall.html', context={'text3':text3,'textoriginale':input_text2,'taille':size_of_the_text})
     return render(request, 'dashboardRall.html',context={'text4':''})
-
-
 
 def home(request):
     return render(request, 'home.html')

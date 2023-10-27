@@ -19,9 +19,9 @@
   <form action="{% url 'dashbord' %}" method="POST">
     {% csrf_token %%}
     <div class="col-12 text-center">
-          <h1>Réécriture du texte</h1>
+          <h1>Réécriture de texte</h1>
           <div class="spinner-border" role="status" id="spinner" style="display: none;">
-            <span class="visually-hidden">Loading...</span>
+            <span class="visually-hidden">Chargement...</span>
           </div>
     </div>
         <br />
@@ -29,7 +29,7 @@
           <div class="row"> 
             <div class="col-3">
               <div>
-                <h5>Aimeriez-vous que certains mots clés reviennent? si oui entrez vos mots clés.</h5>
+                <h5>Aimeriez-vous que certains mots clés reviennent ? Si oui entrez vos mots clés.</h5>
                 <textarea class="form-control" id="keywords1" name="keywords1" style="border-radius: 10px;
                 border: 1px solid rgba(0, 0, 0, 0.20);background: #FFF;">{{keywords}}</textarea>
                 <br />

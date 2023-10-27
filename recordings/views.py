@@ -1,9 +1,7 @@
-from django.shortcuts import render
-from django.shortcuts import render,HttpResponse,redirect
+from django.shortcuts import redirect
 from recordings.models import Summary,Recording_extend,Recording_rewrite
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
-from django.utils.encoding import force_str
 from django.contrib.auth.decorators import login_required
 
 
@@ -24,7 +22,7 @@ def sauvegarder_contenu_rewrite(request):
             return redirect('toutenregistrement')
         else:
             # Enregistrement échoué, affichage du message d'erreur
-            messages.error(request, 'Impossible d\'enregistrer. Veuillez remplir tous les champs.')
+            messages.error(request, 'Impossible d\'enregistrer. Veuillez remplir tous les champs!')
     
     return redirect('toutenregistrement')
    

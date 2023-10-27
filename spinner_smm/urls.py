@@ -1,4 +1,4 @@
-from django.urls import include, path
+from django.urls import path
 from recordings.views import sauvegarder_contenu_rewrite,sauvegarder_contenu_extends,sauvegarder_contenu_summary
 from spinner.views import  generate_summary,chat_completion,generate_rewrite,extend_content,home,home1
 from show.views import affichage

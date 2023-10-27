@@ -1,5 +1,4 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
-{% url 'deconnexion' as deconnexion %} 
+{% extends 'base.html' %} {% load static %} {% block content %} {% url 'deconnexion' as deconnexion %} 
 <nav
   class="navbar"
   style="border-bottom: 1px solid rgba(44, 113, 235, 0.25); background: #fff"
@@ -28,13 +27,13 @@
     </button>
     {% url 'home1' as home1 %} 
     <a href="{{home1}}">
-    <img
-      src="{% static 'images/Logo.png' %}"
-      alt="Logo"
-      style="width: auto; height: 70px; margin-left: 50px"
-    />
-  </a>
-</div>
+      <img
+        src="{% static 'images/Logo.png' %}"
+        alt="Logo"
+        style="width: auto; height: 70px; margin-left: 50px"
+      />
+    </a>
+  </div>
   <div style="display:flex;">
       {% if request.user.is_authenticated %}
       <div>

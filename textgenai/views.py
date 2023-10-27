@@ -1,15 +1,14 @@
-from django.http import Http404
-
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from textgenai.helpers import *
 import openai
+import os
 from recordings.models import Recording
-
+from django.http import JsonResponse
 from textgenai.serializer import *
 
-openai.api_key = "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"
+key_openIA=openai.api_key=os.environ.get('OPENAI_API_KEY')
 
 @api_view(['POST'])
 def textgen(request):
@@ -31,7 +30,6 @@ def textgen(request):
         print(result)
         return Response(result.data, status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 @api_view(['POST'])
 def extendgen(request):
@@ -58,7 +56,6 @@ def extendgen(request):
         return JsonResponse({'erreur': 'bien vouloir entrer un texte'})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
 @api_view(['POST'])
 def summarygen(request):
     enter_resum_Content_Serializer= EnterresumeContentSerializer(data=request.data)
@@ -82,9 +79,6 @@ def summarygen(request):
     else:
         return JsonResponse({'erreur': 'bien vouloir entrer un texte'})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-
 
 @api_view(['POST'])
 def rewritegen(request):
